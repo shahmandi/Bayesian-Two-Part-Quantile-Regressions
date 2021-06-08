@@ -28,13 +28,13 @@ The data used in this article consists of citation counts for standard journal a
 
 The articles were published in the year 2010 and their information was extracted at the end of the year 2019, giving the citation counts time to mature. _The number of citations to each article_ is the dependent variable. _Collaboration, length of title, and journal internationality_ were selected as independent variables. A sequence of quantiles from 0.05 to 0.95 is considered. Ordinary Bayesian QR, Bayesian two-part QR with hurdle at 0 and Bayesian two-part QR with hurdle at 3 were fitted to the datasets. **MCMC** was calculated once with **jags** function from the R-library **R2jags** and another time with **stan** function from the R-library **rstan**. The jags function is based on the Gibbs sampler and stan function is based on **Hamiltonian Monte Carlo**. In the following, the details of both methods are explained. 
 
-### Gibbs sampling algorithm
+- ### Gibbs sampling algorithm
 
 Three chains were run in the **jags** function. For each chain, 100000 iterations with burn-in 50000 and thinning size of 160 were used. Based on a pre-test, the autocorrelation plots for the parameters corresponding to the journal internationality in both parts of the model showed _a slow decreasing pattern, indicating slow mixing in the chain_. To fix it, such a large number of iterations, burn-in and thinning size were selected. All the R code for this study is available in the file of **"R_code_citation_counts_R2jags.r"** and also the data of real citation counts corresponding to the 7 fields of Scopus are in the folder of **"Data_scopus"**.
 
 
 
-### Hamiltonian Monte Carlo sampling algorithm
+- ### Hamiltonian Monte Carlo sampling algorithm
 
 Four chains were run in the **stan** function. For each chain, 2000 iterations with warm-up 1000 were used. All the R code for this study is available in the file of **"R_code_citation_counts_rstan.r"**.
 
