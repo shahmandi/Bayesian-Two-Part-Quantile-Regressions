@@ -14,7 +14,20 @@ For simulation study, samples with sizes of 500, 1000 and 3000 are simulated fro
 - The mean squared error of the parameters’ estimates (intercept excluded)
 - The width of the credible intervals for both independent variables x1 and x2
   
- are computed. The function **jags** from the R-library **R2jags** which is based on **Gibbs sampler** was used for MCMC computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of **"R_Code_Simulation.r"**.
+ are computed. The function **jags** from the R-library **R2jags** which is based on **Gibbs sampler** was used for **MCMC** computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of **"R_Code_Simulation.r"**.
+
+## Study of real citation count data
+The data used in this article consists of citation counts for standard journal articles (excluding reviews) published in the following seven Scopus fields: 
+
+- Arts and Humanities (all)
+- Literature and Literary Theory
+-  Religious Studies
+-  Visual Arts and Performing Arts
+-  Media Technology, Architecture
+-  Emergency Nursing
+
+The articles were published in the year 2010 and their information was extracted at the end of the year 2019, giving the citation counts time to mature. _The number of citations to each article_ is the dependent variable. _Collaboration, length of title, and journal internationality_ were selected as independent variables. A sequence of quantiles from 0.05 to 0.95 is considered. Ordinary Bayesian QR, Bayesian two-part QR with hurdle at 0 and Bayesian two-part QR with hurdle at 3 were fitted to the datasets. **MCMC** was calculated again with the jags function by considering three chains. For each chain, 100000 iterations with burn-in 50000 and thinning size of 160 were used. Based on a pre-test, the autocorrelation plots for the parameters corresponding to the journal internationality in both parts of the model showed a slow decreasing pattern, indicating slow mixing in the chain. To fix it, such a large number of iterations, burn-in and thinning size were selected. All the R code for this study is available in the file of **"R_code_citation_counts_R2jags.r"** and also the data of real citation counts corresponding to the 7 fields of Scopus are in the folder of **"Data_scopus"**.
+
 
 
 
