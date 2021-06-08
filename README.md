@@ -10,11 +10,11 @@ For simulation study, samples with sizes of 500, 1000 and 3000 are simulated fro
  3.  Next, the quantile value corresponding to the quantile level is found in the data in which all substantial mass points (including 0,1,2, and 3) are removed and the Bayesian QR model is fitted for the corresponding quantile (this model is the QR part of the two-part model with hurdle at 3). 
  
  This process is repeated 100 times for each sample size, and for 4 specific quantiles of 0.75, 0.85, 0.90, and 0.95 (of the whole data) separately. For each combination
- 1. The prediction error of each model
- 2. The mean squared error of the parameters’ estimates (intercept excluded)
- 3. The width of the credible intervals for both independent variables x1 and x2
+- The prediction error of each model
+- The mean squared error of the parameters’ estimates (intercept excluded)
+- The width of the credible intervals for both independent variables x1 and x2
   
- are computed. The function **jags** from the R-library **R2jags** which is based on **Gibbs sampler** was used for MCMC computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of **R_Code_Simulation.r**.
+ are computed. The function **jags** from the R-library **R2jags** which is based on **Gibbs sampler** was used for MCMC computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of **"R_Code_Simulation.r"**.
 
 
 
