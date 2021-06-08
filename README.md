@@ -12,8 +12,9 @@ For simulation study, samples with sizes of 500, 1000 and 3000 are simulated fro
  This process is repeated 100 times for each sample size, and for 4 specific quantiles of 0.75, 0.85, 0.90, and 0.95 (of the whole data) separately. For each combination
  1. The prediction error of each model
  2. The mean squared error of the parameters’ estimates (intercept excluded)
- 3. The width of the credible intervals for both independent variables x1 and x2 
- are computed. The function ** jags ** from the R-library ** R2jags ** which is based on Gibbs sampler was used for MCMC computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of ** R_Code_Simulation.r **.
+ 3. The width of the credible intervals for both independent variables x1 and x2
+  
+ are computed. The function **jags** from the R-library **R2jags** which is based on **Gibbs sampler** was used for MCMC computation corresponding to the Bayesian QR models. In this function, three chains will run. For each chain, 10000 iterations with burn-in 1000 and thinning number of 90 were considered. All the R code for this simulation is available in the file of **R_Code_Simulation.r**.
 
 
 
