@@ -168,7 +168,7 @@ intercept.cit <- rep(1, n.cit)
 #Stan code
 cat("
 
-//Definition of the inputs emported for feeding the model
+//Definition of the inputs imported for feeding the model
 data {
   int<lower=0> N;
   int<lower=0> k;
@@ -352,7 +352,7 @@ intercept.cit <- rep(1, n.cit)
 #Stan code
 cat("
 
-//Definition of the inputs emported for feeding the model
+//Definition of the inputs imported for feeding the model
 data {
   int<lower=0> N;
   int<lower=0> k;
