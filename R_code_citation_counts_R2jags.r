@@ -3,7 +3,7 @@ library(R2jags)
 library(jagsUI)
 
 
-#------------------------Defining the Bayesian quantile regression model-----------
+#------------------------Fitting the Bayesian quantile regression model-----------
 
 
 #Reading data and providing independent and dependent variables
@@ -94,7 +94,8 @@ fit_jags <-jags(model.file = "jags_qr.txt", data = cit.data,
 fit_jags
 
 
-#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
+#------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
+
 #Reading data and providing independent and dependent variables
 
 #Defining the field of Scopus 
@@ -238,7 +239,7 @@ fit_jags_h0
 pp.check(fit_jags_h0, observed = 'fit', simulated = 'fit.new')
 
 
-#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
+#------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
 
 #Reading data and providing independent and dependent variables
 
