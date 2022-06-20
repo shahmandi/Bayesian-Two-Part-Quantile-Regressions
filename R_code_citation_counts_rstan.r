@@ -3,7 +3,7 @@ library(rstan)
 library(bayesplot)
 
 
-#------------------------Defining the Bayesian quantile regression model-----------
+#------------------------Fitting the Bayesian quantile regression model-----------
 
 
 #Reading data and providing independent and dependent variables
@@ -130,7 +130,7 @@ fit_rstan <- stan(file = "stan_qr.stan",data = stan_data, chains = 4, warmup = 1
 fit_rstan
 
 
-#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
+#------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
 
 #Reading data and providing independent and dependent variables
 
@@ -313,7 +313,7 @@ fit_rstan_h0 <- stan(file = "stan_tpqr_zerohurdle.stan",data = stan_data_h0, cha
 fit_rstan_h0
 
 
-#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
+#------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
 
 #Reading data and providing independent and dependent variables
 
