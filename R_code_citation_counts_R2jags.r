@@ -2,6 +2,10 @@
 library(R2jags)
 library(jagsUI)
 
+
+#------------------------Defining the Bayesian quantile regression model-----------
+
+
 #Reading data and providing independent and dependent variables
 
 #Defining the field of Scopus 
@@ -90,7 +94,7 @@ fit_jags <-jags(model.file = "jags_qr.txt", data = cit.data,
 fit_jags
 
 
-
+#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
 #Reading data and providing independent and dependent variables
 
 #Defining the field of Scopus 
@@ -213,7 +217,7 @@ cat("
 
     
     }
-    ", file="jags_tpqr.txt")
+    ", file="jags_tpqr_zerohurdle.txt")
 
 
 cit.data <- list("citation.star", "n.cit", "tau", "intercept.cit", "indi_collab", "l_title", "journal_inter")
@@ -223,7 +227,7 @@ cit.keeps <- c("beta", "gamma","y_rep","fit","fit.new")
 #Jags function
 tau=0.50
 library(jagsUI)
-fit_jags_h0 <-jags(model.file = "jags_tpqr.txt", data = cit.data,
+fit_jags_h0 <-jags(model.file = "jags_tpqr_zerohurdle.txt", data = cit.data,
              n.iter = 100000, n.chains = 3, n.thin =160, n.burnin = 50000,
                parameters.to.save = cit.keeps, DIC =TRUE)
 fit_jags_h0
@@ -232,6 +236,9 @@ fit_jags_h0
 
 #Posterior predictive check plot for the errors
 pp.check(fit_jags_h0, observed = 'fit', simulated = 'fit.new')
+
+
+#------------------------Defining the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
 
 #Reading data and providing independent and dependent variables
 
@@ -357,7 +364,7 @@ cat("
 
     
     }
-    ", file="jags_tpqr.txt")
+    ", file="jags_tpqr_threehurdle.txt")
 
 
 cit.data <- list("citation.star", "n.cit", "tau", "intercept.cit", "indi_collab", "l_title", "journal_inter")
@@ -367,7 +374,7 @@ cit.keeps <- c("beta", "gamma","y_rep","fit","fit.new")
 #Jags function
 tau=0.50
 library(jagsUI)
-fit_jags_h3 <-jags(model.file = "jags_tpqr.txt", data = cit.data,
+fit_jags_h3 <-jags(model.file = "jags_tpqr_threehurdle.txt", data = cit.data,
               n.iter = 500, n.chains = 3, n.thin =1, n.burnin =100,
                parameters.to.save = cit.keeps, DIC =TRUE)
 fit_jags_h3
