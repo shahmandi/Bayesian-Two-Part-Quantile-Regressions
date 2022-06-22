@@ -130,6 +130,28 @@ fit_rstan <- stan(file = "stan_qr.stan",data = stan_data, chains = 4, warmup = 1
 fit_rstan
 
 
+
+#Checking the quality of the generated MCMC samples 
+
+print(fit_rstan, pars = c("beta", "gammaa"))
+
+posterior_cp<-as.array(fit_rstan)
+options(repr.plot.width =7, repr.plot.height =7)
+bayesplot::color_scheme_set("blue")
+mcmc_acf(posterior_cp,pars =c("beta[1]","beta[2]","beta[3]","beta[4]"))
+mcmc_acf(posterior_cp,pars =c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"))
+
+
+options(repr.plot.width =7, repr.plot.height =7)
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan, pars = c("beta[1]","beta[2]","beta[3]","beta[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
+
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan, pars = c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
+
+
 #------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
 
 #Reading data and providing independent and dependent variables
@@ -311,6 +333,28 @@ stan_data_h0 <- list(
 #Stan function 
 fit_rstan_h0 <- stan(file = "stan_tpqr_zerohurdle.stan",data = stan_data_h0, chains = 4, warmup = 1000,iter = 2000)
 fit_rstan_h0
+
+
+
+#Checking the quality of the generated MCMC samples 
+
+print(fit_rstan_h0, pars = c("beta", "gammaa"))
+
+posterior_cp_h0<-as.array(fit_rstan_h0)
+bayesplot::color_scheme_set("blue")
+mcmc_acf(posterior_cp_h0,pars =c("beta[1]","beta[2]","beta[3]","beta[4]"))
+mcmc_acf(posterior_cp_h0,pars =c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"))
+
+
+options(repr.plot.width =7, repr.plot.height =7)
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan_h0, pars = c("beta[1]","beta[2]","beta[3]","beta[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
+
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan_h0, pars = c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
+
 
 
 #------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
@@ -499,3 +543,25 @@ stan_data_h3 <- list(
 #Stan function 
 fit_rstan_h3 <- stan(file = "stan_tpqr_threehurdle.stan",data = stan_data_h3, chains = 4, warmup = 1000,iter = 2000)
 fit_rstan_h3
+
+
+
+
+#Checking the quality of the generated MCMC samples 
+
+print(fit_rstan_h3, pars = c("beta", "gammaa"))
+
+posterior_cp_h3<-as.array(fit_rstan_h3)
+bayesplot::color_scheme_set("blue")
+mcmc_acf(posterior_cp_h3,pars =c("beta[1]","beta[2]","beta[3]","beta[4]"))
+mcmc_acf(posterior_cp_h3,pars =c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"))
+
+
+options(repr.plot.width =7, repr.plot.height =7)
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan_h3, pars = c("beta[1]","beta[2]","beta[3]","beta[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
+
+bayesplot::color_scheme_set("blue")
+bayesplot::mcmc_trace(fit_rstan_h3, pars = c("gammaa[1]","gammaa[2]","gammaa[3]","gammaa[4]"),
+                      facet_args = list(ncol = 1, strip.position = "left"))
