@@ -1,7 +1,9 @@
 #Required packages for MCMC computation based on Gibbs sampler
 library(R2jags)
 library(jagsUI)
-
+library(coda)
+library(mcmcr)
+library(MCMCvis)
 
 #------------------------Fitting the Bayesian quantile regression model-----------
 
@@ -93,6 +95,16 @@ fit_jags <-jags(model.file = "jags_qr.txt", data = cit.data,
                parameters.to.save = cit.keeps, DIC =TRUE)
 fit_jags
 
+
+
+#Checking the quality of the generated MCMC samples 
+
+b<-MCMCchains(fit_jags,mcmc.list =TRUE)
+traceplot(b)
+autocorr.plot(b)
+round(effectiveSize(b),0)[1:4]
+round(effectiveSize(b),0)[5:8]
+gelman.diag(b)            
 
 #------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 0-----------
 
@@ -235,8 +247,20 @@ fit_jags_h0
 
 
 
+#Checking the quality of the generated MCMC samples 
+
+b_h0<-MCMCchains(fit_jags_h0,mcmc.list =TRUE)
+traceplot(b_h0)
+autocorr.plot(b_h0)
+round(effectiveSize(b_h0),0)[1:4]
+round(effectiveSize(b_h0),0)[5:8]
+gelman.diag(b_h0)            
+
+
+
 #Posterior predictive check plot for the errors
 pp.check(fit_jags_h0, observed = 'fit', simulated = 'fit.new')
+
 
 
 #------------------------Fitting the Bayesian two-part hurdle quantile regression model with hurdle at 3-----------
@@ -376,10 +400,21 @@ cit.keeps <- c("beta", "gamma","y_rep","fit","fit.new")
 tau=0.50
 library(jagsUI)
 fit_jags_h3 <-jags(model.file = "jags_tpqr_threehurdle.txt", data = cit.data,
-              n.iter = 500, n.chains = 3, n.thin =1, n.burnin =100,
+              n.iter = 100000, n.chains = 3, n.thin =160, n.burnin = 50000,
                parameters.to.save = cit.keeps, DIC =TRUE)
 fit_jags_h3
-#n.iter = 100000, n.chains = 3, n.thin =160, n.burnin = 50000,
+
+
+
+#Checking the quality of the generated MCMC samples 
+
+b_h3<-MCMCchains(fit_jags_h3,mcmc.list =TRUE)
+traceplot(b_h3)
+autocorr.plot(b_h3)
+round(effectiveSize(b_h3),0)[1:4]
+round(effectiveSize(b_h3),0)[5:8]
+gelman.diag(b_h3)            
+
 
 #Posterior predictive check plot for the errors
 pp.check(fit_jags_h3, observed = 'fit', simulated = 'fit.new')
